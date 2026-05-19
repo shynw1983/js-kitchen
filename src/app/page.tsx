@@ -87,8 +87,8 @@ export default function Home() {
     <>
       <SiteHeader />
       <main>
-        <section className="mx-auto grid max-w-6xl gap-14 px-6 py-16 md:grid-cols-[1.18fr_0.82fr] md:py-24">
-          <div>
+        <section className="mx-auto grid max-w-6xl gap-14 px-6 py-16 md:grid-cols-[minmax(0,1.18fr)_minmax(0,0.82fr)] md:py-24">
+          <div className="min-w-0">
             <p className="text-xs tracking-[0.28em] text-neutral-500">
               VIRTUAL KITCHEN · FUKUOKA
             </p>
