@@ -2,7 +2,7 @@ import Link from "next/link";
 import { BrandCard } from "@/components/brand-card";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { brands, kitchen } from "@/lib/site-data";
+import { brands, kitchen, locations } from "@/lib/site-data";
 
 const trustPoints = [
   {
@@ -92,7 +92,7 @@ export default function Home() {
               VIRTUAL KITCHEN · FUKUOKA
             </p>
             <h1 className="mt-7 max-w-3xl text-[2.65rem] font-medium leading-[1.08] tracking-tight sm:text-6xl">
-              福岡・清水の厨房から、
+              ひとつの厨房から、
               <br />
               小さなブランドを育てていく。
             </h1>
@@ -115,10 +115,10 @@ export default function Home() {
             </div>
           </div>
           <div className="border-l border-neutral-200 pl-6 md:pl-10">
-            <p className="text-sm text-neutral-500">キッチン拠点</p>
-            <p className="mt-4 text-2xl font-medium leading-snug">{kitchen.address}</p>
+            <p className="text-sm text-neutral-500">キッチンブランド</p>
+            <p className="mt-4 text-2xl font-medium leading-snug">{kitchen.name}</p>
             <div className="mt-7 max-w-sm text-sm leading-8 text-neutral-600">
-              店内飲食ではなく、オンライン注文に特化した厨房です。外からは見えにくい場所だからこそ、品質と衛生を日々整えています。
+              店内飲食ではなく、オンライン注文に特化した厨房モデルです。外からは見えにくい場所だからこそ、品質と衛生を日々整えています。
             </div>
           </div>
         </section>
@@ -139,6 +139,39 @@ export default function Home() {
                   </p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-6 py-16">
+          <div className="border-t border-neutral-200 pt-10">
+            <p className="text-xs tracking-[0.24em] text-neutral-500">LOCATIONS</p>
+            <div className="mt-8 grid gap-8 md:grid-cols-[0.85fr_1.15fr]">
+              <div>
+                <h2 className="text-3xl font-medium">拠点一覧</h2>
+                <p className="mt-4 max-w-md text-sm leading-7 text-neutral-600">
+                  J&apos;s Kitchen の運営拠点です。今後の展開に合わせて、順次追加していきます。
+                </p>
+              </div>
+              <div className="border-t border-neutral-200">
+                {locations.map((location) => (
+                  <article
+                    key={location.name}
+                    className="grid gap-4 border-b border-neutral-200 py-6 md:grid-cols-[1fr_1.25fr]"
+                  >
+                    <div>
+                      <div className="flex items-center gap-3">
+                        <h3 className="text-xl font-medium">{location.name}</h3>
+                        <span className="text-xs text-neutral-500">{location.status}</span>
+                      </div>
+                      <p className="mt-3 text-sm text-neutral-500">{location.address}</p>
+                    </div>
+                    <p className="text-sm leading-7 text-neutral-600">
+                      {location.description}
+                    </p>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </section>

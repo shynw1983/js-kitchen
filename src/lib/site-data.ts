@@ -24,8 +24,18 @@ export const kitchen = {
   name: "J's Kitchen",
   address: "福岡市南区清水 1-2-8-103",
   concept:
-    "福岡・清水の小さな厨房から、複数のオンライン飲食ブランドを丁寧に育てています。デリバリーを中心に、これからはテイクアウトにも対応していきます。",
+    "ひとつの厨房を起点に、複数のオンライン飲食ブランドを丁寧に育てています。デリバリーを中心に、これからはテイクアウトにも対応していきます。",
 };
+
+export const locations = [
+  {
+    name: "清水 Kitchen",
+    address: kitchen.address,
+    status: "運営中",
+    description:
+      "福岡市南区清水にある、J's Kitchen の最初の運営拠点です。",
+  },
+];
 
 export const brands: Brand[] = [
   {
