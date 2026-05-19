@@ -22,40 +22,8 @@ body {
   background: #e5e5e5;
 }
 
-.hero-carousel-track {
-  width: 500%;
-  animation: hero-carousel-slide 20s ease-in-out infinite;
-}
-
-.hero-carousel:hover .hero-carousel-track {
-  animation-play-state: paused;
-}
-
-@keyframes hero-carousel-slide {
-  0%,
-  16% {
-    transform: translateX(0);
-  }
-  22%,
-  38% {
-    transform: translateX(-20%);
-  }
-  44%,
-  60% {
-    transform: translateX(-40%);
-  }
-  66%,
-  82% {
-    transform: translateX(-60%);
-  }
-  88%,
-  100% {
-    transform: translateX(-80%);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .hero-carousel-track {
-    animation: none;
+  .hero-carousel * {
+    transition-duration: 0.01ms !important;
   }
 }

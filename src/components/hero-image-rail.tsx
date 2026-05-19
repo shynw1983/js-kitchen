@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const heroImages = [
   {
@@ -32,16 +35,37 @@ const heroImages = [
 ];
 
 export function HeroImageRail() {
-  const images = [...heroImages, heroImages[0]];
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % heroImages.length);
+    }, 5000);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const goToPrevious = () => {
+    setActiveIndex((current) =>
+      current === 0 ? heroImages.length - 1 : current - 1,
+    );
+  };
+
+  const goToNext = () => {
+    setActiveIndex((current) => (current + 1) % heroImages.length);
+  };
 
   return (
     <div className="min-w-0 border-l border-neutral-200 pl-6 md:pl-10">
       <div className="hero-carousel relative h-[420px] overflow-hidden rounded-[28px] border border-neutral-200 bg-white md:h-[520px]">
-        <div className="hero-carousel-track flex h-full">
-          {images.map((image, index) => (
+        <div
+          className="flex h-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+          style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+        >
+          {heroImages.map((image, index) => (
             <div
               key={`${image.src}-${index}`}
-              className="relative h-full w-1/5 shrink-0 overflow-hidden bg-white"
+              className="relative h-full w-full shrink-0 overflow-hidden bg-white"
             >
               <Image
                 src={image.src}
@@ -60,13 +84,39 @@ export function HeroImageRail() {
             </div>
           ))}
         </div>
-        <div className="absolute bottom-6 right-6 flex gap-2">
-          {heroImages.map((image) => (
-            <span
-              key={image.src}
-              className="h-2 w-2 rounded-full bg-neutral-900/25"
-            />
-          ))}
+
+        <div className="absolute bottom-6 right-6 flex items-center gap-2 rounded-full border border-white/70 bg-white/75 p-1.5 backdrop-blur">
+          <button
+            type="button"
+            onClick={goToPrevious}
+            aria-label="前の画像へ"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-lg leading-none transition hover:bg-neutral-900 hover:text-white"
+          >
+            ←
+          </button>
+          <div className="flex gap-1.5 px-1">
+            {heroImages.map((image, index) => (
+              <button
+                key={image.src}
+                type="button"
+                onClick={() => setActiveIndex(index)}
+                aria-label={`${index + 1}枚目の画像へ`}
+                className={`h-2 rounded-full transition-all ${
+                  activeIndex === index
+                    ? "w-5 bg-neutral-900"
+                    : "w-2 bg-neutral-900/25"
+                }`}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={goToNext}
+            aria-label="次の画像へ"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-lg leading-none transition hover:bg-neutral-900 hover:text-white"
+          >
+            →
+          </button>
         </div>
       </div>
     </div>
