@@ -1,12 +1,24 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Brand } from "@/lib/site-data";
 
 export function BrandCard({ brand }: { brand: Brand }) {
   return (
     <article className="group border-t border-neutral-200 py-7">
       <div>
-        <div className="flex items-center justify-between gap-4">
-          <h3 className="text-xl font-medium tracking-tight">{brand.name}</h3>
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-center gap-4">
+            {brand.logo ? (
+              <Image
+                src={brand.logo}
+                alt={`${brand.name} logo`}
+                width={56}
+                height={56}
+                className="h-14 w-14 rounded-full object-contain"
+              />
+            ) : null}
+            <h3 className="text-xl font-medium tracking-tight">{brand.name}</h3>
+          </div>
           <span className="text-xs text-neutral-500">
             {brand.status === "active" ? "営業中" : "準備中"}
           </span>

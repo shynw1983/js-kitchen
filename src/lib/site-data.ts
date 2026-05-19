@@ -10,6 +10,7 @@ export type Brand = {
   name: string;
   tagline: string;
   description: string;
+  logo?: string;
   status: "active" | "coming-soon";
   accent: string;
   platforms: {
@@ -29,10 +30,11 @@ export const kitchen = {
 export const brands: Brand[] = [
   {
     slug: "mala-tang",
-    name: "麻辣湯",
-    tagline: "具材を選んで楽しむ、温かい麻辣湯。",
+    name: "まぁ麻",
+    tagline: "出来立て麻辣湯",
     description:
-      "麻・辣・旨み・香りのバランスを大切にした、日常的に楽しめる麻辣湯ブランドです。辛さや具材を選びながら、その日の気分に合う一杯をお届けします。",
+      "注文ごとに仕上げる、出来立ての麻辣湯ブランドです。麻・辣・旨み・香りのバランスを大切にしながら、辛さや具材を選べる一杯をお届けします。",
+    logo: "/images/maa-ma-logo.png",
     status: "active",
     accent: "from-red-500 to-orange-400",
     platforms: {

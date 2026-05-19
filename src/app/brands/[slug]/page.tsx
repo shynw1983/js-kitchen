@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteFooter } from "@/components/site-footer";
@@ -38,8 +39,22 @@ export default async function BrandPage({ params }: BrandPageProps) {
         <section className="border-b border-neutral-200">
           <div className="mx-auto max-w-6xl px-6 py-16">
             <p className="text-xs tracking-[0.24em] text-neutral-500">BRAND</p>
-            <h1 className="mt-4 text-4xl font-medium">{brand.name}</h1>
-            <p className="mt-4 max-w-2xl text-neutral-600">{brand.tagline}</p>
+            <div className="mt-5 flex flex-col gap-6 sm:flex-row sm:items-center">
+              {brand.logo ? (
+                <Image
+                  src={brand.logo}
+                  alt={`${brand.name} logo`}
+                  width={112}
+                  height={112}
+                  priority
+                  className="h-28 w-28 rounded-full object-contain"
+                />
+              ) : null}
+              <div>
+                <h1 className="text-4xl font-medium">{brand.name}</h1>
+                <p className="mt-4 max-w-2xl text-neutral-600">{brand.tagline}</p>
+              </div>
+            </div>
           </div>
         </section>
 
