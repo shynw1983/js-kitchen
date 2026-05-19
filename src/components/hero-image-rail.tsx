@@ -27,19 +27,19 @@ export function HeroImageRail() {
   const images = [...heroImages, ...heroImages];
 
   return (
-    <div className="hero-rail border-l border-neutral-200 pl-6 md:pl-10">
-      <div className="hero-rail-mask overflow-hidden">
-        <div className="hero-rail-track flex w-max gap-4">
+    <div className="border-l border-neutral-200 pl-6 md:pl-10">
+      <div className="hero-rail h-[420px] overflow-hidden border border-neutral-200 bg-white">
+        <div className="hero-rail-track flex h-full w-max">
           {images.map((image, index) => (
             <div
               key={`${image.src}-${index}`}
-              className="relative h-[420px] w-[300px] shrink-0 overflow-hidden border border-neutral-200 bg-white sm:w-[340px]"
+              className="relative h-full w-[min(68vw,360px)] shrink-0 overflow-hidden border-r border-neutral-200 bg-white"
             >
               <Image
                 src={image.src}
                 alt={image.alt}
                 fill
-                sizes="(max-width: 768px) 300px, 340px"
+                sizes="(max-width: 768px) 68vw, 360px"
                 priority={index < 2}
                 className={image.className}
               />

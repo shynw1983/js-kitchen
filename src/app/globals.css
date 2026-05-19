@@ -22,11 +22,6 @@ body {
   background: #e5e5e5;
 }
 
-.hero-rail-mask {
-  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-}
-
 .hero-rail-track {
   animation: hero-rail-scroll 28s linear infinite;
 }
@@ -40,7 +35,7 @@ body {
     transform: translateX(0);
   }
   to {
-    transform: translateX(calc(-50% - 0.5rem));
+    transform: translateX(-50%);
   }
 }
 
