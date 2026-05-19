@@ -5,11 +5,81 @@ import { SiteHeader } from "@/components/site-header";
 import { brands, kitchen } from "@/lib/site-data";
 
 const trustPoints = [
-  "調理工程の標準化",
-  "衛生と温度の管理",
-  "ブランドを越えた品質基準",
-  "デリバリー前提の商品設計",
+  {
+    title: "調理工程の標準化",
+    description: "仕込みから提供まで、同じ品質で届けるための手順を整えています。",
+    icon: "process",
+  },
+  {
+    title: "衛生と温度の管理",
+    description: "清掃、保管、加熱・冷却の状態を日々確認し、厨房環境を保ちます。",
+    icon: "hygiene",
+  },
+  {
+    title: "ブランドを越えた品質基準",
+    description: "複数ブランドであっても、厨房としての基本品質は共通です。",
+    icon: "quality",
+  },
+  {
+    title: "デリバリー前提の商品設計",
+    description: "届いた時の状態まで考え、容器、温度、食べやすさを設計します。",
+    icon: "delivery",
+  },
 ];
+
+function QualityIllustration({ type }: { type: string }) {
+  const common = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    strokeWidth: 1.4,
+  };
+
+  return (
+    <div className="flex h-24 w-full items-center justify-start text-neutral-900">
+      <svg
+        aria-hidden="true"
+        className="h-20 w-20"
+        viewBox="0 0 80 80"
+      >
+        {type === "process" && (
+          <>
+            <rect {...common} x="15" y="16" width="38" height="48" rx="2" />
+            <path {...common} d="M25 26h18M25 38h18M25 50h18" />
+            <path {...common} d="m56 30 4 4 8-9" />
+            <path {...common} d="m56 48 4 4 8-9" />
+          </>
+        )}
+        {type === "hygiene" && (
+          <>
+            <path {...common} d="M34 16v28a12 12 0 1 0 12 0V16a6 6 0 0 0-12 0Z" />
+            <path {...common} d="M40 52v.2" />
+            <path {...common} d="M50 21h9M50 31h6" />
+            <path {...common} d="M23 54c-4-4-4-10 0-15 4 5 4 11 0 15Z" />
+          </>
+        )}
+        {type === "quality" && (
+          <>
+            <circle {...common} cx="40" cy="36" r="18" />
+            <path {...common} d="m31 36 6 6 13-15" />
+            <path {...common} d="m31 54-4 12 13-6 13 6-4-12" />
+          </>
+        )}
+        {type === "delivery" && (
+          <>
+            <path {...common} d="M25 25h30l4 39H21l4-39Z" />
+            <path {...common} d="M32 25a8 8 0 0 1 16 0" />
+            <path {...common} d="M30 42h20" />
+            <path {...common} d="M55 43h7l7 8v13H55" />
+            <circle {...common} cx="32" cy="66" r="3" />
+            <circle {...common} cx="63" cy="66" r="3" />
+          </>
+        )}
+      </svg>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
@@ -58,8 +128,15 @@ export default function Home() {
             <p className="text-xs tracking-[0.24em] text-neutral-500">QUALITY</p>
             <div className="mt-8 grid gap-0 md:grid-cols-4">
               {trustPoints.map((point) => (
-                <div key={point} className="border-t border-neutral-200 py-5 text-sm md:border-l md:border-t-0 md:px-5 md:py-0 first:md:border-l-0 first:md:pl-0">
-                  {point}
+                <div
+                  key={point.title}
+                  className="border-t border-neutral-200 py-7 md:border-l md:border-t-0 md:px-5 md:py-0 first:md:border-l-0 first:md:pl-0"
+                >
+                  <QualityIllustration type={point.icon} />
+                  <h3 className="mt-2 text-sm font-medium">{point.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-neutral-500">
+                    {point.description}
+                  </p>
                 </div>
               ))}
             </div>
