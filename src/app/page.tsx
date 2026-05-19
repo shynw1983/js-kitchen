@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BrandCard } from "@/components/brand-card";
+import { HeroImageRail } from "@/components/hero-image-rail";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { brands, kitchen, locations } from "@/lib/site-data";
@@ -114,13 +115,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="border-l border-neutral-200 pl-6 md:pl-10">
-            <p className="text-sm text-neutral-500">キッチンブランド</p>
-            <p className="mt-4 text-2xl font-medium leading-snug">{kitchen.name}</p>
-            <div className="mt-7 max-w-sm text-sm leading-8 text-neutral-600">
-              店内飲食ではなく、オンライン注文に特化した厨房モデルです。外からは見えにくい場所だからこそ、品質と衛生を日々整えています。
-            </div>
-          </div>
+          <HeroImageRail />
         </section>
 
         <section className="border-y border-neutral-200">
